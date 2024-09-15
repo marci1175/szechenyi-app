@@ -1,0 +1,82 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'szechenyi'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=szechenyi",
+                    "--package=szechenyi"
+                ],
+                "filter": {
+                    "name": "szechenyi",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'szechenyi'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=szechenyi",
+                    "--package=szechenyi"
+                ],
+                "filter": {
+                    "name": "szechenyi",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'szechenyi-ui'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=szechenyi-ui",
+                    "--package=szechenyi-ui"
+                ],
+                "filter": {
+                    "name": "szechenyi-ui",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'szechenyi-ui'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=szechenyi-ui",
+                    "--package=szechenyi-ui"
+                ],
+                "filter": {
+                    "name": "szechenyi-ui",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
