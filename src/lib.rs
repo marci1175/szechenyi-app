@@ -33,7 +33,7 @@ fn get_title_button_click_type(event: MouseEvent) -> TitleButtonMessage {
         2 => TitleButtonMessage::RightClicked,
         3 => TitleButtonMessage::Backward,
         4 => TitleButtonMessage::Forward,
-        
+
         _ => unreachable!(),
     }
 }
@@ -44,10 +44,12 @@ impl Component for TitleButton {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-        let title_button_callback = ctx.link().callback(|event| {get_title_button_click_type(event)});
+        let title_button_callback = ctx
+            .link()
+            .callback(|event| get_title_button_click_type(event));
 
         let button = html!(
-            <button onContextmenu = "return false;" onmousedown={title_button_callback}> 
+            <button onContextmenu = "return false;" onmousedown={title_button_callback}>
                 { ctx.props().label.clone() }
             </button>
         );
@@ -60,8 +62,7 @@ impl Component for TitleButton {
                     {button}
                 </div>
             )
-        }
-        else {
+        } else {
             button
         }
     }
@@ -72,13 +73,13 @@ impl Component for TitleButton {
                 ctx.props().common_state.set(ctx.props().value.clone());
 
                 true
-            },
+            }
             _ => false,
         }
     }
-    
+
     type Message = TitleButtonMessage;
-    
+
     type Properties = TitleButtonProperties;
 }
 
@@ -115,20 +116,19 @@ impl Component for TextArea {
     type Properties = TextAreaProperties;
 
     fn create(_ctx: &Context<Self>) -> Self {
-        Self {
-            last_key_code: 0,
-        }
+        Self { last_key_code: 0 }
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-        let text_edit_button_callback = ctx.link().callback(|event: KeyboardEvent| {
-            TextAreaMessage::KeyPressed(event.key_code())
-        });
+        let text_edit_button_callback = ctx
+            .link()
+            .callback(|event: KeyboardEvent| TextAreaMessage::KeyPressed(event.key_code()));
 
-        let text_edit_value_callback: Callback<InputEvent> = ctx.link().callback(|event: InputEvent| {
-            let html_elem: HtmlTextAreaElement = event.target_unchecked_into();
-            TextAreaMessage::ValueUpdate(html_elem.value())
-        });
+        let text_edit_value_callback: Callback<InputEvent> =
+            ctx.link().callback(|event: InputEvent| {
+                let html_elem: HtmlTextAreaElement = event.target_unchecked_into();
+                TextAreaMessage::ValueUpdate(html_elem.value())
+            });
 
         html!(
             <textarea name={ctx.props().name.clone()} id={ctx.props().id.clone()} rows={ctx.props().size.0.to_string()} columns={ctx.props().size.1.to_string()} onkeypress={text_edit_button_callback} oninput={text_edit_value_callback}></textarea>
@@ -139,10 +139,10 @@ impl Component for TextArea {
         match msg {
             TextAreaMessage::KeyPressed(code) => {
                 self.last_key_code = code;
-            },
+            }
             TextAreaMessage::ValueUpdate(current_inner) => {
                 _ctx.props().text_buffer.set(current_inner);
-            },
+            }
         }
 
         true

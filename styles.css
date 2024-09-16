@@ -93,9 +93,11 @@ button {
   }
 }
 
-.titlebar {
+.menubar {
   display: flex;
-  justify-content: center;   
+  justify-content: center;
+  align-items: flex-end;
+  height: 95vh;
   gap: 20px;
 }
 

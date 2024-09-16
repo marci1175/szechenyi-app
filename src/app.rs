@@ -1,6 +1,5 @@
-use yew::prelude::*;
 use crate::lib::{TabState, TitleButton};
-
+use yew::prelude::*;
 
 #[function_component(App)]
 pub fn app() -> Html {
@@ -8,11 +7,6 @@ pub fn app() -> Html {
 
     html!(
         <div>
-            <div class="titlebar">
-                <TitleButton label="Helyettesítések" common_state={tab_state.clone()} value={TabState::Helyettesitesek}/>
-                <TitleButton label="Csöngetés" common_state={tab_state.clone()} value={TabState::Csongetes}/>
-                <TitleButton label="Tanév rendje" common_state={tab_state.clone()} value={TabState::TanevRendje}/>
-            </div>
             {
                 match *tab_state {
                     TabState::Helyettesitesek => {
@@ -32,6 +26,12 @@ pub fn app() -> Html {
                     },
                 }
             }
+
+            <div class="menubar">
+                <TitleButton label="Helyettesítések" common_state={tab_state.clone()} value={TabState::Helyettesitesek}/>
+                <TitleButton label="Csöngetés" common_state={tab_state.clone()} value={TabState::Csongetes}/>
+                <TitleButton label="Tanév rendje" common_state={tab_state.clone()} value={TabState::TanevRendje}/>
+            </div>
         </div>
     )
 }
